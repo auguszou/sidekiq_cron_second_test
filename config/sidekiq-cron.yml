@@ -1,0 +1,12 @@
+---
+:tag: Schedule Cron
+:concurrency: 5
+:require: ./boot_sidekiq.rb
+:logfile: ./log/sidekiq-cron.log
+:pidfile: ./tmp/pids/sidekiq-cron.pid
+staging:
+  :concurrency: 3
+production:
+  :concurrency: 5
+:queues:
+  - [schedule_cron, 1]

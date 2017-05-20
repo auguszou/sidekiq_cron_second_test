@@ -1,0 +1,120 @@
+defaults:
+  pre_config: &pre_config
+    custom_levels: [DEBUG, PARAMS, INFO, WARN, ERROR, EXCEPTION, FATAL]
+  loggers:
+    debug: &debug_logger
+      level: DEBUG
+      trace: 'false'
+    info: &info_logger
+      level: INFO
+      trace: 'false'
+  outputters:
+    file_outputter: &file_outputter
+      type: FileOutputter
+      filename: "log/#{ENV}.log"
+      trunc: false
+    file_outputter: &access_log_file_outputter
+      type: FileOutputter
+      filename: "log/access_log.#{ENV}.log"
+      trunc: false
+  formatters:
+    pattern_formatter: &pattern_formatter
+      type: PatternFormatter
+      date_pattern: '%Y-%m-%dT%H:%M:%S.%L%z'
+      pattern: '[%p][%d][][%l]: %m'
+    pattern_formatter: &loggly_formatter
+      type: LogglyFormatter
+
+outputters: &outputters
+- type: StdoutOutputter
+  name: console
+  formatter:
+    <<: *pattern_formatter
+    pattern: '[%p][%d][%l]: %m'
+- name: api_log
+  <<: *file_outputter
+  formatter:
+    <<: *pattern_formatter
+    pattern: '[%p][%d][API][%l]: %m'
+- name: db_log
+  <<: *file_outputter
+  formatter:
+    <<: *pattern_formatter
+    pattern: '[%p][%d][DB][%l]: %m'
+- name: view_log
+  <<: *file_outputter
+  formatter:
+    <<: *pattern_formatter
+    pattern: '[%p][%d][VIEW][%l]: %m'
+- name: access_log
+  <<: *access_log_file_outputter
+  formatter:
+    <<: *loggly_formatter
+
+development:
+  pre_config: *pre_config
+  loggers:
+  - name: api
+    outputters: [console, api_log]
+    <<: *debug_logger
+  - name: db
+    outputters: [console, db_log]
+    <<: *debug_logger
+  - name: view
+    outputters: [console, view_log]
+    <<: *debug_logger
+  - name: access
+    outputters: [access_log]
+    <<: *debug_logger
+  outputters: *outputters
+
+test:
+  pre_config: *pre_config
+  loggers:
+  - name: api
+    outputters: [api_log]
+    <<: *debug_logger
+  - name: db
+    outputters: [db_log]
+    <<: *debug_logger
+  - name: view
+    outputters: [view_log]
+    <<: *debug_logger
+  - name: access
+    outputters: [access_log]
+    <<: *debug_logger
+  outputters: *outputters
+
+staging:
+  pre_config: *pre_config
+  loggers:
+  - name: api
+    outputters: [api_log]
+    <<: *debug_logger
+  - name: db
+    outputters: [db_log]
+    <<: *debug_logger
+  - name: view
+    outputters: [view_log]
+    <<: *debug_logger
+  - name: access
+    outputters: [access_log]
+    <<: *debug_logger
+  outputters: *outputters
+
+production:
+  pre_config: *pre_config
+  loggers:
+  - name: api
+    outputters: [api_log]
+    <<: *info_logger
+  - name: db
+    outputters: [db_log]
+    <<: *info_logger
+  - name: view
+    outputters: [view_log]
+    <<: *info_logger
+  - name: access
+    outputters: [access_log]
+    <<: *info_logger
+  outputters: *outputters

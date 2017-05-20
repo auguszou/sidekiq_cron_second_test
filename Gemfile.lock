@@ -1,0 +1,107 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    activemodel (4.2.8)
+      activesupport (= 4.2.8)
+      builder (~> 3.1)
+    activerecord (4.2.8)
+      activemodel (= 4.2.8)
+      activesupport (= 4.2.8)
+      arel (~> 6.0)
+    activesupport (4.2.8)
+      i18n (~> 0.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.3, >= 0.3.4)
+      tzinfo (~> 1.1)
+    arel (6.0.4)
+    backports (3.6.8)
+    builder (3.2.3)
+    concurrent-ruby (1.0.5)
+    connection_pool (2.2.1)
+    dotenv (2.2.0)
+    faraday (0.11.0)
+      multipart-post (>= 1.2, < 3)
+    git-version-bump (0.15.1)
+    i18n (0.8.1)
+    log4r (1.1.10)
+    minitest (5.10.1)
+    multi_json (1.12.1)
+    multipart-post (2.0.0)
+    mysql2 (0.4.5)
+    oj (2.18.2)
+    paranoia (2.2.1)
+      activerecord (>= 4.0, < 5.1)
+    puma (3.7.1)
+    rack (1.6.5)
+    rack-attack (5.0.1)
+      rack
+    rack-contrib (1.4.0)
+      git-version-bump (~> 0.15)
+      rack (~> 1.4)
+    rack-parser (0.7.0)
+      rack
+    rack-protection (1.5.3)
+      rack
+    rack-test (0.6.3)
+      rack (>= 1.0)
+    redis (3.3.3)
+    redis-namespace (1.5.3)
+      redis (~> 3.0, >= 3.0.4)
+    rufus-scheduler (3.3.4)
+      tzinfo
+    sidekiq (4.2.9)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      rack-protection (>= 1.5.0)
+      redis (~> 3.2, >= 3.2.1)
+    sidekiq-cron (0.4.5)
+      redis-namespace (>= 1.5.2)
+      rufus-scheduler (>= 2.0.24)
+      sidekiq (>= 4.2.1)
+    sinatra (1.4.8)
+      rack (~> 1.5)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
+    sinatra-activerecord (2.0.12)
+      activerecord (>= 3.2)
+      sinatra (>= 1.0)
+    sinatra-contrib (1.4.7)
+      backports (>= 2.0)
+      multi_json
+      rack-protection
+      rack-test
+      sinatra (~> 1.4.0)
+      tilt (>= 1.3, < 3)
+    state_machine (1.2.0)
+    thread_safe (0.3.6)
+    tilt (2.0.6)
+    tzinfo (1.2.2)
+      thread_safe (~> 0.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  activesupport
+  builder
+  dotenv
+  faraday
+  log4r
+  multi_json
+  mysql2
+  oj
+  paranoia
+  puma
+  rack-attack
+  rack-contrib
+  rack-parser
+  redis
+  sidekiq
+  sidekiq-cron
+  sinatra
+  sinatra-activerecord
+  sinatra-contrib
+  state_machine
+
+BUNDLED WITH
+   1.14.6
